@@ -1,11 +1,11 @@
 {
   "randhawa_os": {
     "version": "1.0.0",
-    "last_backup": "2025-07-07T11:55:13-05:00",
+    "last_backup": "2025-07-07T12:00:09-05:00",
     "backup_type": "automated",
     "hostname": "unknown",
     "kernel": "6.15.5-arch1-1",
-    "uptime": "up 1 hour, 9 minutes",
+    "uptime": "up 1 hour, 14 minutes",
     "timezone": "US/Central",
     "architecture": "x86_64",
     "distribution": "arch",
@@ -16,10 +16,10 @@
   "hardware": {
     "cpu": "Intel(R) Core(TM) i5-4278U CPU @ 2.60GHz",
     "memory_total": "15Gi",
-    "disk_usage": "13G/20G (67%)"
+    "disk_usage": "13G/20G (68%)"
   },
   "services": {
     "failed_services": 0,
-    "active_user_services": 99
+    "active_user_services": 101
   }
 }

@@ -51,7 +51,7 @@ libvirt 1:11.5.0-1
 lightdm-slick-greeter 2.0.9-1
 linux 6.15.5.arch1-1
 linux-firmware 20250627-1
-linux-lts 6.12.35-1
+linux-lts 6.12.36-1
 lvm2 2.03.33-1
 nano 8.5-1
 network-manager-applet 1.36.0-1
@@ -117,6 +117,5 @@ xorg-server 21.1.18-2
 xorg-xinit 1.4.4-1
 yay-bin 12.5.0-1
 yay-bin-debug 12.5.0-1
-youtube-music 3.9.0-1
 zram-generator 1.2.1-1
 zsh 5.9-5

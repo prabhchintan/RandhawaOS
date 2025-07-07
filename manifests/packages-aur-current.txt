@@ -9,4 +9,3 @@ wlogout 1.2.2-0
 wlogout-debug 1.2.2-0
 yay-bin 12.5.0-1
 yay-bin-debug 12.5.0-1
-youtube-music 3.9.0-1
