@@ -46,6 +46,7 @@ kvantum-qt5 1.1.5-1
 less 1:668-1
 libpulse 17.0+r43+g3e2bb8a1e-1
 libva-intel-driver 2.4.1-5
+libvirt 1:11.5.0-1
 lightdm-slick-greeter 2.0.9-1
 linux 6.15.5.arch1-1
 linux-firmware 20250627-1
@@ -72,6 +73,7 @@ playerctl 2.4.1-4
 podman 5.5.2-1
 polkit-gnome 0.105-11
 polkit-kde-agent 6.4.2-1
+qemu-full 10.0.0-7
 qt5-graphicaleffects 5.15.17-1
 qt5-imageformats 5.15.17+kde+r2-1
 qt5-quickcontrols 5.15.17-1
