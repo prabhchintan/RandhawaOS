@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  desktop:
+    build: ./desktop
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - $HOME/.config:/home/randhawa/.config:ro
+      - /dev/dri:/dev/dri
+      - /dev/snd:/dev/snd
+    environment:
+      - DISPLAY=$DISPLAY
+      - WAYLAND_DISPLAY=$WAYLAND_DISPLAY
+      - XDG_RUNTIME_DIR=/tmp/runtime-randhawa
+    privileged: true
+    network_mode: host
+    
+  development:
+    build: ./development
+    volumes:
+      - $HOME/Projects:/home/developer/Projects
+      - /var/run/docker.sock:/var/run/docker.sock
+    working_dir: /home/developer/Projects
+    tty: true
+    stdin_open: true
+    
+  web-browser:
+    image: jlesage/firefox
+    ports:
+      - "5800:5800"
+    volumes:
+      - browser-config:/config
+      - $HOME/Downloads:/config/downloads
+    environment:
+      - DISPLAY_WIDTH=1920
+      - DISPLAY_HEIGHT=1080
+    
+volumes:
+  browser-config:

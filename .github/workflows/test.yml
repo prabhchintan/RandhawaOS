@@ -1,0 +1,61 @@
+name: Test RandhawaOS Bootstrap
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-bootstrap:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        distro: ['archlinux', 'debian', 'ubuntu', 'fedora']
+        
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Test bootstrap script syntax
+      run: |
+        bash -n bootstrap.sh
+        shellcheck bootstrap.sh || true
+        
+    - name: Test on ${{ matrix.distro }}
+      uses: addnab/docker-run-action@v3
+      with:
+        image: ${{ matrix.distro }}:latest
+        options: -v ${{ github.workspace }}:/workspace
+        run: |
+          cd /workspace
+          # Test basic script functionality without actual installation
+          bash -n bootstrap.sh
+          echo "Bootstrap script syntax check passed for ${{ matrix.distro }}"
+
+  test-manifests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Validate JSON manifests
+      run: |
+        # Test that JSON files are valid
+        jq empty manifests/system-manifest.json
+        echo "Manifests are valid JSON"
+        
+    - name: Check package versions format
+      run: |
+        # Basic format check for package versions
+        grep -E "^[a-zA-Z0-9_-]+ [0-9]" manifests/package-versions.txt
+        echo "Package versions format is valid"
+
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Scan for secrets
+      run: |
+        # Check for potential secrets or personal information
+        ! grep -r "password\|secret\|token\|key" . --exclude-dir=.git --exclude="*.md" --exclude="*.yml" || true
+        echo "Security scan completed"

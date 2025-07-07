@@ -1,0 +1,101 @@
+{
+  "randhawa_os": {
+    "version": "1.0.0",
+    "created": "2025-07-07",
+    "base_system": "arch",
+    "kernel": "linux 6.15.5.arch1-1",
+    "kernel_lts": "linux-lts 6.12.35-1",
+    "architecture": "x86_64",
+    "hostname": "randhawa-desktop",
+    "timezone": "auto-detect"
+  },
+  "core_packages": {
+    "system": [
+      "base",
+      "base-devel",
+      "linux",
+      "linux-firmware",
+      "linux-lts",
+      "intel-ucode",
+      "lvm2",
+      "networkmanager",
+      "iwd",
+      "efibootmgr"
+    ],
+    "desktop": [
+      "hyprland",
+      "waybar",
+      "kitty",
+      "rofi-wayland",
+      "dunst",
+      "hyprpaper",
+      "hyprlock",
+      "hypridle",
+      "grim",
+      "slurp",
+      "wl-clipboard",
+      "cliphist"
+    ],
+    "audio": [
+      "pipewire",
+      "pipewire-alsa",
+      "pipewire-jack",
+      "pipewire-pulse",
+      "wireplumber",
+      "pamixer",
+      "pavucontrol",
+      "playerctl"
+    ],
+    "development": [
+      "git",
+      "code",
+      "nodejs",
+      "npm",
+      "go",
+      "vim",
+      "htop"
+    ],
+    "applications": [
+      "firefox",
+      "dolphin",
+      "obs-studio",
+      "flatpak"
+    ]
+  },
+  "aur_packages": [
+    "google-chrome",
+    "yay-bin",
+    "youtube-music"
+  ],
+  "services": {
+    "enabled": [
+      "NetworkManager",
+      "iwd",
+      "bluetooth",
+      "pipewire",
+      "wireplumber"
+    ],
+    "user_services": [
+      "pipewire-pulse",
+      "wireplumber"
+    ]
+  },
+  "desktop_environment": {
+    "compositor": "hyprland",
+    "framework": "HyDE",
+    "theme": "Nordic-Blue",
+    "terminal": "kitty",
+    "launcher": "rofi-wayland",
+    "file_manager": "dolphin",
+    "browser": "firefox"
+  },
+  "filesystem": {
+    "type": "LVM on ext4",
+    "layout": {
+      "/boot": "1GB vfat",
+      "/": "20GB ext4",
+      "/home": "remaining space ext4"
+    },
+    "target_migration": "BTRFS with snapshots"
+  }
+}

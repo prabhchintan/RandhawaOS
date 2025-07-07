@@ -1,0 +1,40 @@
+# RandhawaOS Git Ignore
+
+# Personal files
+*.personal
+*.private
+**/secrets/
+**/.env
+
+# System specific
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.log
+*.tmp
+**/build/
+**/dist/
+
+# User specific configs (these should be templates only)
+configs/**/.personal
+configs/**/user-*
+
+# Container runtime
+containers/**/runtime/
+containers/**/.cache/
+
+# Backup files
+*.backup
+*.bak
+*~
+
+# IDE files
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# OS generated
+.directory
+desktop.ini
