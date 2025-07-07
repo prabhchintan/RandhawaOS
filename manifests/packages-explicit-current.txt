@@ -15,6 +15,7 @@ code 1.101.2-1
 docker 1:28.3.0-1
 dolphin 25.04.3-1
 dunst 1.12.2-1
+dysk 2.10.1-1
 efibootmgr 18-3
 fastfetch 2.47.0-1
 ffmpegthumbs 25.04.3-1
