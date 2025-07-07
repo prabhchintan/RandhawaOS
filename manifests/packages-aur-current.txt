@@ -6,6 +6,7 @@ claude-code-debug 1.0.43-1
 debtap 3.5.1-1
 google-chrome 138.0.7204.92-1
 phonon-qt6-mpv 0.1.0-3
+snapd 2.68.4-1
 wlogout 1.2.2-0
 wlogout-debug 1.2.2-0
 yay-bin 12.5.0-1
