@@ -1,0 +1,15 @@
+com.github.rafostar.Clapper
+com.github.tchx84.Flatseal
+com.github.unrud.VideoDownloader
+com.obsproject.Studio
+io.github.flattool.Warehouse
+io.github.spacingbat3.webcord
+io.gitlab.adhami3310.Impression
+io.gitlab.theevilskeleton.Upscaler
+io.missioncenter.MissionCenter
+org.blender.Blender
+org.gimp.GIMP
+org.gnome.Boxes
+org.gnome.eog
+org.inkscape.Inkscape
+org.kde.krita

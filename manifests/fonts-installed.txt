@@ -1,0 +1,19 @@
+MaterialDesignIcons.ttf
+Caskaydia Cove Nerd Font Complete Regular.otf
+CaskaydiaCoveNerdFontMono-Regular.ttf
+CaskaydiaCoveNerdFont-Regular.ttf
+Caskaydia Cove Nerd Font Complete Mono Regular.otf
+CaskaydiaCoveNerdFontMono-Regular.ttf
+CaskaydiaCoveNerdFont-Regular.ttf
+MononokiNerdFontMono-Regular.ttf
+MononokiNerdFont-Regular.ttf
+mononoki-Regular Nerd Font Complete.ttf
+mononoki-Regular Nerd Font Complete Mono.ttf
+MapleMono-BoldItalic.ttf
+MapleMono-Light.ttf
+MapleMono-LightItalic.ttf
+MapleMono-Bold.ttf
+MapleMono-Regular.ttf
+MapleMono-Italic.ttf
+JetBrains-Mono-Nerd-Font-Complete.ttf
+JetBrainsMonoNerdFont-Regular.ttf
