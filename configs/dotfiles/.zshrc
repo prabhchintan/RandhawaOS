@@ -104,3 +104,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 if [ -f ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
 export PATH="$HOME/.local/bin:$HOME/.local/share/randhawa-os:$PATH"
+
+  # Auto-start Hyprland on login
+  if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
+    exec Hyprland
+  fi
