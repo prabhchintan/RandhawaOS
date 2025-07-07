@@ -12,6 +12,7 @@ claude-code 1.0.43-1
 cliphist 1:0.6.1-1
 cmatrix 2.0-3
 code 1.101.2-1
+debtap 3.5.1-1
 docker 1:28.3.0-1
 dolphin 25.04.3-1
 dunst 1.12.2-1

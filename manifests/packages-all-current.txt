@@ -73,6 +73,7 @@ dbus-broker 37-2
 dbus-broker-units 37-2
 dbus-units 37-2
 dconf 0.40.0-3
+debtap 3.5.1-1
 debugedit 5.1-1
 default-cursors 3-1
 desktop-file-utils 0.28-1
@@ -603,6 +604,7 @@ pipewire-jack 1:1.4.6-1
 pipewire-pulse 1:1.4.6-1
 pixman 0.46.2-1
 pkgconf 2.5.1-1
+pkgfile 24-1
 plasma-activities 6.4.2-1
 playerctl 2.4.1-4
 podman 5.5.2-1
