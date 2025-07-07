@@ -1,15 +1,15 @@
 {
   "randhawa_os": {
     "version": "1.0.0",
-    "last_backup": "2025-07-07T13:58:31-05:00",
+    "last_backup": "2025-07-07T14:01:39-05:00",
     "backup_type": "automated",
     "hostname": "unknown",
     "kernel": "6.15.5-arch1-1",
-    "uptime": "up 1 hour, 31 minutes",
+    "uptime": "up 1 hour, 35 minutes",
     "timezone": "US/Central",
     "architecture": "x86_64",
     "distribution": "arch",
-    "desktop_session": "Hyprland",
+    "desktop_session": "unknown",
     "shell": "zsh",
     "user": "prab"
   },
@@ -20,6 +20,6 @@
   },
   "services": {
     "failed_services": 0,
-    "active_user_services": 114
+    "active_user_services": 116
   }
 }
