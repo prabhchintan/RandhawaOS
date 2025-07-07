@@ -4,6 +4,7 @@ var-lib-snapd-snap-gnome\x2d3\x2d28\x2d1804-198.mount         enabled disabled
 var-lib-snapd-snap-gtk\x2dcommon\x2dthemes-1535.mount         enabled disabled
 var-lib-snapd-snap-snapd-24718.mount                          enabled disabled
 var-lib-snapd-snap-youtube\x2dmusic\x2ddesktop\x2dapp-6.mount enabled disabled
+apparmor.service                                              enabled disabled
 bluetooth.service                                             enabled disabled
 getty@.service                                                enabled enabled
 libvirtd.service                                              enabled disabled
@@ -12,6 +13,7 @@ NetworkManager-wait-online.service                            enabled disabled
 NetworkManager.service                                        enabled disabled
 sddm.service                                                  enabled disabled
 seatd.service                                                 enabled disabled
+snapd.apparmor.service                                        enabled disabled
 systemd-timesyncd.service                                     enabled enabled
 libvirtd-admin.socket                                         enabled disabled
 libvirtd-ro.socket                                            enabled disabled
