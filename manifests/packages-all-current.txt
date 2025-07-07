@@ -9,6 +9,7 @@ alsa-card-profiles 1:1.4.6-1
 alsa-lib 1.2.14-1
 alsa-topology-conf 1.2.5.1-4
 alsa-ucm-conf 1.2.14-2
+android-studio 2025.1.1.13-1
 aom 3.12.1-1
 appstream 1.0.5-2
 aquamarine 0.8.0-5
