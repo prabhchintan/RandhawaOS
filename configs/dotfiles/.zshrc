@@ -103,5 +103,4 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 if [ -f ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
-export PATH="/home/prab/.local/share/randhawa-os:$PATH"
 export PATH="$HOME/.local/bin:$HOME/.local/share/randhawa-os:$PATH"

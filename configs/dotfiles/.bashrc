@@ -9,5 +9,4 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 if [ -f ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
-export PATH="/home/prab/.local/share/randhawa-os:$PATH"
 export PATH="$HOME/.local/bin:$HOME/.local/share/randhawa-os:$PATH"
