@@ -423,7 +423,6 @@ MIT License - feel free to fork, modify, and share!
 - **🎫 [Create Personal Access Token](https://github.com/settings/tokens)**
 - **📖 [Detailed Installation Guide](docs/installation.md)**
 - **🐛 [Report Issues](https://github.com/prabhchintan/RandhawaOS/issues)**
-- **💬 [Get Help](https://github.com/prabhchintan/RandhawaOS/discussions)**
 
 ---
 
