@@ -334,6 +334,37 @@ randhawa-os container build
 
 ### Common Issues
 
+**GitHub Authentication Errors**
+```bash
+# Error: "Username for 'https://github.com': " followed by password rejection
+# Solution: Use Personal Access Token instead of password
+# Or switch to SSH authentication
+
+# Check current remote URL
+git remote -v
+
+# Switch to SSH if needed
+git remote set-url origin git@github.com:YOUR-USERNAME/RandhawaOS.git
+```
+
+**Backup Failures**
+```bash
+# Check if backups are failing due to authentication
+journalctl --user -u randhawa-backup.service | grep -i error
+
+# Common fix: Update stored credentials
+git config --global credential.helper store
+git push  # Enter username and PAT when prompted
+```
+
+**Multiple Computer Sync Issues**
+```bash
+# If you get "repository not found" errors:
+# 1. Make sure you forked the repository
+# 2. Clone from YOUR fork, not the original
+# 3. Set up authentication on each computer independently
+```
+
 **Service Startup Failures**
 ```bash
 # Check service status
@@ -347,10 +378,10 @@ systemctl --user restart randhawa-backup.timer
 **Network Connectivity**
 ```bash
 # Test GitHub access
-git ls-remote https://github.com/prabhchintan/RandhawaOS.git
+git ls-remote https://github.com/YOUR-USERNAME/RandhawaOS.git
 
-# Verify credentials
-cat ~/.git-credentials  # Should show encoded credentials
+# Verify credentials (should show encoded token, not password)
+cat ~/.git-credentials
 ```
 
 **Path Issues**
