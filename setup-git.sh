@@ -80,6 +80,78 @@ for config in hypr waybar kitty rofi dunst; do
     fi
 done
 
+# Backup snapshots with security filtering
+echo "📸 Backing up snapshots..."
+if [ -d "$RANDHAWA_DIR/snapshots" ]; then
+    mkdir -p "$REPO_DIR/snapshots"
+    
+    for snapshot_dir in "$RANDHAWA_DIR/snapshots"/*; do
+        if [ -d "$snapshot_dir" ]; then
+            snapshot_name=$(basename "$snapshot_dir")
+            target_dir="$REPO_DIR/snapshots/$snapshot_name"
+            
+            # Create filtered snapshot backup
+            mkdir -p "$target_dir"
+            
+            # Copy safe files only
+            if [ -f "$snapshot_dir/packages.txt" ]; then
+                cp "$snapshot_dir/packages.txt" "$target_dir/" 2>/dev/null || true
+            fi
+            
+            if [ -f "$snapshot_dir/system_info.txt" ]; then
+                cp "$snapshot_dir/system_info.txt" "$target_dir/" 2>/dev/null || true
+            fi
+            
+            # Copy .config but filter out sensitive files
+            if [ -d "$snapshot_dir/.config" ]; then
+                mkdir -p "$target_dir/.config"
+                
+                # Copy config directories, excluding sensitive ones
+                for config_item in "$snapshot_dir/.config"/*; do
+                    if [ -d "$config_item" ]; then
+                        config_name=$(basename "$config_item")
+                        
+                        # Skip sensitive config directories
+                        case "$config_name" in
+                            "ssh"|"gnupg"|"gpg"|"keyring"|"evolution"|"telepathy"|"goa-1.0"|"chrome"|"chromium"|"mozilla"|"firefox")
+                                continue
+                                ;;
+                        esac
+                        
+                        mkdir -p "$target_dir/.config/$config_name"
+                        
+                        # Copy files but exclude sensitive patterns
+                        find "$config_item" -type f | while read -r file; do
+                            filename=$(basename "$file")
+                            relative_path="${file#$config_item/}"
+                            
+                            # Skip files with sensitive patterns
+                            case "$filename" in
+                                *password*|*secret*|*key*|*token*|*credential*|*wallet*|*keystore*|*priv*|cookies*|history*|cache*)
+                                    continue
+                                    ;;
+                                *.pem|*.key|*.p12|*.pfx|*.crt|*.csr)
+                                    continue
+                                    ;;
+                            esac
+                            
+                            # Skip files containing sensitive content patterns
+                            if file -b "$file" | grep -q text && grep -qiE "(password|secret|private.*key|token|credential)" "$file" 2>/dev/null; then
+                                continue
+                            fi
+                            
+                            # Copy the safe file
+                            target_file="$target_dir/.config/$config_name/$relative_path"
+                            mkdir -p "$(dirname "$target_file")"
+                            cp "$file" "$target_file" 2>/dev/null || true
+                        done
+                    fi
+                done
+            fi
+        fi
+    done
+fi
+
 # Commit changes
 cd "$REPO_DIR"
 if [ -n "$(git status --porcelain)" ]; then
@@ -89,6 +161,7 @@ if [ -n "$(git status --porcelain)" ]; then
 - Updated package lists
 - Synced configuration files
 - System state snapshot
+- Backed up system snapshots (filtered for security)
 
 🤖 Automated backup from $(hostname)"
     
