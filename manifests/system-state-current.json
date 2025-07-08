@@ -1,11 +1,11 @@
 {
   "randhawa_os": {
     "version": "1.0.0",
-    "last_backup": "2025-07-07T21:06:56-05:00",
+    "last_backup": "2025-07-07T21:17:13-05:00",
     "backup_type": "automated",
     "hostname": "unknown",
     "kernel": "6.15.5-arch1-1",
-    "uptime": "up 8 hours, 40 minutes",
+    "uptime": "up 8 hours, 50 minutes",
     "timezone": "US/Central",
     "architecture": "x86_64",
     "distribution": "arch",
@@ -20,6 +20,6 @@
   },
   "services": {
     "failed_services": 0,
-    "active_user_services": 120
+    "active_user_services": 121
   }
 }

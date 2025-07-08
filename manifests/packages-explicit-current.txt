@@ -22,6 +22,7 @@ fastfetch 2.47.0-1
 ffmpegthumbs 25.04.3-1
 firefox 140.0.2-1
 flatpak 1:1.16.1-1
+fuse2 2.9.9-5
 fzf 0.62.0-1
 git 2.50.0-1
 go 2:1.24.4-1
