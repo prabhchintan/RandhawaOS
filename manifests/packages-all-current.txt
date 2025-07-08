@@ -67,7 +67,6 @@ convertlit 1.8-12
 coreutils 9.7-1
 cryptsetup 2.8.0-1
 curl 8.14.1-1
-cursor-bin 1.2.2-1
 dav1d 1.5.1-1
 db5.3 5.3.28-5
 dbus 1.16.2-1

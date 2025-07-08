@@ -3,7 +3,6 @@ chaotic-keyring 20250614-1
 chaotic-mirrorlist 20240724-2
 claude-code 1.0.44-1
 claude-code-debug 1.0.44-1
-cursor-bin 1.2.2-1
 debtap 3.5.1-1
 google-chrome 138.0.7204.100-1
 phonon-qt6-mpv 0.1.0-3
