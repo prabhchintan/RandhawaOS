@@ -257,6 +257,11 @@ randhawa-os snapshot restore randhawa_20250107_120000
 - System state information
 - Hardware and service configuration
 
+**Storage & Recovery:**
+- Snapshots stored locally for quick restore
+- Automatically backed up to GitHub for disaster recovery
+- Sensitive data (passwords, keys) filtered out during backup
+
 ---
 
 ## 🚨 Disaster Recovery
@@ -280,6 +285,7 @@ cd RandhawaOS
 - **All Dotfiles**: Shell aliases, vim configs, etc.
 - **System Services**: Same services enabled/disabled
 - **Development Environment**: Containers and dev tools ready
+- **System Snapshots**: Previous restore points available for rollback
 
 ---
 
