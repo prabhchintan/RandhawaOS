@@ -12,6 +12,7 @@ claude-code 1.0.43-1
 cliphist 1:0.6.1-1
 cmatrix 2.0-3
 code 1.101.2-1
+cursor-bin 1.2.2-1
 debtap 3.5.1-1
 docker 1:28.3.0-1
 dolphin 25.04.3-1
@@ -22,7 +23,6 @@ fastfetch 2.47.0-1
 ffmpegthumbs 25.04.3-1
 firefox 140.0.2-1
 flatpak 1:1.16.1-1
-fuse2 2.9.9-5
 fzf 0.62.0-1
 git 2.50.0-1
 go 2:1.24.4-1
