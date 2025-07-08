@@ -34,6 +34,65 @@ chmod +x bootstrap.sh
 ./bootstrap.sh
 ```
 
+## 🔑 GitHub Authentication Setup
+
+**⚠️ IMPORTANT**: Before running the installation, you need to set up GitHub authentication for automatic backups to work.
+
+### For Your Own Repository (Recommended)
+1. **Fork this repository** to your GitHub account
+2. **Clone YOUR fork** instead of the original:
+   ```bash
+   git clone https://github.com/YOUR-USERNAME/RandhawaOS.git
+   ```
+3. **Set up authentication** using one of these methods:
+
+#### Option 1: Personal Access Token (Easiest)
+1. Go to GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)
+2. Generate a new token with `repo` permissions
+3. When prompted for password during installation, use your **token** instead of your password
+
+#### Option 2: SSH Keys (Most Secure)
+```bash
+# Generate SSH key if you don't have one
+ssh-keygen -t ed25519 -C "your_email@example.com"
+
+# Add key to GitHub: Settings → SSH and GPG keys → New SSH key
+cat ~/.ssh/id_ed25519.pub
+
+# Change remote URL to use SSH
+git remote set-url origin git@github.com:YOUR-USERNAME/RandhawaOS.git
+```
+
+#### Option 3: GitHub CLI (Recommended)
+```bash
+# Install GitHub CLI, then authenticate
+gh auth login
+# Follow the prompts to authenticate with your browser
+```
+
+### Multi-Computer Setup
+
+✅ **You can run RandhawaOS on multiple computers simultaneously!**
+
+Each computer will:
+- Automatically push its changes to your GitHub repository
+- Merge changes from other computers
+- Maintain its own backup schedule (every 10 minutes)
+- No conflicts - all computers sync to the same repo
+
+**Setup on additional computers:**
+1. Run the same installation command
+2. Set up GitHub authentication (same as above)
+3. The system will automatically start backing up from that computer too
+
+### Using the Original Repository (Not Recommended)
+If you want to use the original repository URL without forking:
+- You'll get authentication errors when trying to push
+- Backups will fail silently
+- You won't be able to sync your personal configurations
+
+**Always fork the repository for your own use!**
+
 ## 🔧 Core Components
 
 ### Package Management Strategy
