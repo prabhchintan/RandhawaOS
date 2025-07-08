@@ -1,432 +1,432 @@
 # RandhawaOS
 
-A declarative, reproducible desktop environment management system built on immutable infrastructure principles.
+**A Complete, Reproducible Desktop Environment That Lives in Git**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![POSIX Compliant](https://img.shields.io/badge/POSIX-Compliant-green)](https://pubs.opengroup.org/onlinepubs/9699919799/)
-[![OCI Compatible](https://img.shields.io/badge/OCI-Compatible-blue)](https://opencontainers.org/)
+[![Cross Platform](https://img.shields.io/badge/Platform-Linux-blue)](https://www.linux.org/)
 
-## 📋 Overview
-
-RandhawaOS is a comprehensive system for achieving deterministic desktop environment reproduction across heterogeneous Linux distributions. It implements a dual-layer architecture combining cutting-edge user experience with long-term system stability through automated state management and cross-platform compatibility.
-
-### 🏗️ Architecture
-
-The system employs a layered approach to desktop environment management:
-
-- **Immutable Base Layer**: Core system components with version pinning
-- **Mutable Experience Layer**: User-space applications and configurations
-- **Automation Layer**: Event-driven backup and synchronization services
-- **Reproducibility Layer**: Cross-platform bootstrapping and restoration
-
-## ⚡ Quick Start
-
-### One-Command Installation
-```bash
-curl -fsSL https://raw.githubusercontent.com/prabhchintan/RandhawaOS/main/install.sh | bash
-```
-
-### Manual Installation
-```bash
-git clone https://github.com/prabhchintan/RandhawaOS.git
-cd RandhawaOS
-chmod +x bootstrap.sh
-./bootstrap.sh
-```
-
-## 🔑 GitHub Authentication Setup
-
-**⚠️ IMPORTANT**: Before running the installation, you need to set up GitHub authentication for automatic backups to work.
-
-### For Your Own Repository (Recommended)
-1. **Fork this repository** to your GitHub account
-2. **Clone YOUR fork** instead of the original:
-   ```bash
-   git clone https://github.com/YOUR-USERNAME/RandhawaOS.git
-   ```
-3. **Set up authentication** using one of these methods:
-
-#### Option 1: Personal Access Token (Easiest)
-1. Go to GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)
-2. Generate a new token with `repo` permissions
-3. When prompted for password during installation, use your **token** instead of your password
-
-#### Option 2: SSH Keys (Most Secure)
-```bash
-# Generate SSH key if you don't have one
-ssh-keygen -t ed25519 -C "your_email@example.com"
-
-# Add key to GitHub: Settings → SSH and GPG keys → New SSH key
-cat ~/.ssh/id_ed25519.pub
-
-# Change remote URL to use SSH
-git remote set-url origin git@github.com:YOUR-USERNAME/RandhawaOS.git
-```
-
-#### Option 3: GitHub CLI (Recommended)
-```bash
-# Install GitHub CLI, then authenticate
-gh auth login
-# Follow the prompts to authenticate with your browser
-```
-
-### Multi-Computer Setup
-
-✅ **You can run RandhawaOS on multiple computers simultaneously!**
-
-Each computer will:
-- Automatically push its changes to your GitHub repository
-- Merge changes from other computers
-- Maintain its own backup schedule (every 10 minutes)
-- No conflicts - all computers sync to the same repo
-
-**Setup on additional computers:**
-1. Run the same installation command
-2. Set up GitHub authentication (same as above)
-3. The system will automatically start backing up from that computer too
-
-### Using the Original Repository (Not Recommended)
-If you want to use the original repository URL without forking:
-- You'll get authentication errors when trying to push
-- Backups will fail silently
-- You won't be able to sync your personal configurations
-
-**Always fork the repository for your own use!**
-
-## 🔧 Core Components
-
-### Package Management Strategy
-- **Primary Package Manager**: Distribution-native (pacman, apt, dnf, zypper)
-- **Reproducible Dependencies**: Nix package manager integration
-- **Sandboxed Applications**: Flatpak runtime environment
-- **Containerized Services**: Docker/Podman isolation
-
-### Desktop Environment Stack
-- **Compositor**: Hyprland (Wayland-native)
-- **Status Bar**: Waybar with custom modules
-- **Terminal Emulator**: Kitty with GPU acceleration
-- **Application Launcher**: Rofi (Wayland fork)
-- **Notification Daemon**: Dunst
-- **File Manager**: Dolphin with KDE integration
-
-### Automation Infrastructure
-- **Event Monitoring**: inotify-based file system watching
-- **Scheduled Operations**: systemd user timers
-- **State Synchronization**: Git-based version control
-- **Cross-Platform Compatibility**: POSIX shell scripting
-
-## 🛠️ System Management
-
-### Command Interface
-```bash
-# System status and health monitoring
-randhawa-os status
-
-# Manual state backup operations
-randhawa-os snapshot create
-randhawa-os snapshot list
-randhawa-os snapshot restore <snapshot-id>
-
-# Container management
-randhawa-os container build
-randhawa-os container run <environment>
-
-# Configuration export/import
-randhawa-os export
-randhawa-os import <configuration-file>
-
-# Filesystem migration utilities
-randhawa-os migrate
-```
-
-### Automated Operations
-
-#### Scheduled Backups
-- **Frequency**: Every 6 hours (00:00, 06:00, 12:00, 18:00 UTC)
-- **Boot-time**: 5 minutes post-boot initialization
-- **Event-driven**: Real-time configuration change detection
-
-#### Monitored Components
-- System configuration files (Hyprland, Waybar, Kitty, etc.)
-- Package installation state and versions
-- Service enablement and configuration
-- User dotfiles and SSH public keys
-- Hardware-specific settings
-
-## 📦 Reproducibility Features
-
-### Cross-Platform Compatibility
-
-| Distribution | Bootstrap | Containers | Nix | Package Manager | Status |
-|-------------|-----------|------------|-----|-----------------|--------|
-| Arch Linux  | ✅        | ✅         | ✅  | pacman         | Primary |
-| Debian      | ✅        | ✅         | ✅  | apt            | Tested  |
-| Ubuntu      | ✅        | ✅         | ✅  | apt            | Tested  |
-| Fedora      | ✅        | ✅         | ✅  | dnf            | Tested  |
-| openSUSE    | ✅        | ✅         | ✅  | zypper         | Tested  |
-| NixOS       | ✅        | ✅         | ✅  | nix            | Native  |
-| Alpine      | ✅        | ✅         | ✅  | apk            | Minimal |
-
-### State Manifests
-
-#### System Manifest Structure
-```json
-{
-  "randhawa_os": {
-    "version": "1.0.0",
-    "base_system": "arch",
-    "kernel": "linux 6.15.5.arch1-1",
-    "architecture": "x86_64"
-  },
-  "packages": {
-    "explicit": ["package-name version"],
-    "aur": ["aur-package version"],
-    "flatpak": ["app.domain.Name"]
-  },
-  "services": {
-    "enabled": ["service-name"],
-    "user_services": ["user-service"]
-  }
-}
-```
-
-### Restoration Methods
-
-#### Emergency Recovery
-```bash
-# Minimal dependency restoration
-curl -fsSL https://raw.githubusercontent.com/prabhchintan/RandhawaOS/main/emergency-restore.sh | bash
-```
-
-#### Full System Restoration
-```bash
-git clone https://github.com/prabhchintan/RandhawaOS.git
-cd RandhawaOS
-./restore.sh
-```
-
-## 🐳 Container Infrastructure
-
-### Desktop Environment Containerization
-```yaml
-# docker-compose.yml excerpt
-services:
-  desktop:
-    build: ./containers/desktop
-    volumes:
-      - /tmp/.X11-unix:/tmp/.X11-unix
-      - $HOME/.config:/home/randhawa/.config:ro
-    environment:
-      - DISPLAY=$DISPLAY
-      - WAYLAND_DISPLAY=$WAYLAND_DISPLAY
-    privileged: true
-    network_mode: host
-```
-
-### Development Environment
-- Isolated toolchain environments
-- Language-specific containers (Node.js, Python, Go, Rust)
-- IDE integration with host filesystem
-- Port forwarding for development servers
-
-## 🔒 Security Model
-
-### Data Protection
-- **Private Key Exclusion**: SSH private keys never backed up
-- **Credential Isolation**: Git credentials stored with 600 permissions
-- **Configuration Sanitization**: Automatic sensitive data filtering
-- **Access Control**: User-space service isolation
-
-### Backup Security
-- Public SSH keys only (`.pub` files)
-- Configuration templates without secrets
-- Environment variable substitution for sensitive values
-- Repository access through encrypted credential storage
-
-## 🚀 Installation Requirements
-
-### Minimum System Requirements
-- Linux kernel 5.4+ with Wayland support
-- 4GB RAM (8GB recommended)
-- 20GB available disk space
-- Network connectivity for package downloads
-
-### Supported Hardware
-- Intel/AMD x86_64 processors
-- Intel/AMD/NVIDIA graphics (Wayland compatible)
-- Standard PC hardware with Linux driver support
-
-### Dependencies
-- `git` (version control operations)
-- `curl`/`wget` (network operations)
-- `systemd` (service management)
-- `inotify-tools` (file system monitoring)
-
-## 📁 Repository Structure
-
-```
-RandhawaOS/
-├── bootstrap.sh              # Universal installation script
-├── install.sh                # Streamlined installer
-├── randhawa-os               # Primary management interface
-├── manifests/                # System state definitions
-│   ├── system-manifest.json
-│   └── package-versions.txt
-├── scripts/                  # Utility and setup scripts
-│   ├── setup-nix.sh
-│   ├── setup-containers.sh
-│   └── migrate-btrfs.sh
-├── containers/               # Container definitions
-│   ├── desktop/
-│   ├── development/
-│   └── docker-compose.yml
-├── configs/                  # Configuration templates
-│   ├── hypr/
-│   ├── waybar/
-│   └── kitty/
-└── docs/                     # Technical documentation
-    ├── installation.md
-    ├── architecture.md
-    └── troubleshooting.md
-```
-
-## 🔧 Advanced Configuration
-
-### Custom Package Sets
-Add distribution-specific packages to manifests:
-```bash
-# Arch Linux
-echo "custom-package version" >> manifests/packages-arch.txt
-
-# Debian/Ubuntu  
-echo "custom-package version" >> manifests/packages-debian.txt
-```
-
-### Service Configuration
-Extend systemd service definitions:
-```bash
-# Add custom user service
-cp custom.service ~/.config/systemd/user/
-systemctl --user enable custom.service
-```
-
-### Container Customization
-Modify container definitions in `containers/` directory and rebuild:
-```bash
-randhawa-os container build
-```
-
-## 📊 Performance Characteristics
-
-### Resource Utilization
-- **Storage Overhead**: ~1MB for core scripts
-- **Memory Usage**: <50MB for monitoring services
-- **Network Usage**: Minimal (backup operations only)
-- **CPU Impact**: Negligible during normal operation
-
-### Backup Performance
-- **Configuration Backup**: <1 second
-- **Package List Generation**: 1-3 seconds
-- **Git Operations**: 2-5 seconds (network dependent)
-- **Full Cycle**: Typically <10 seconds
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**GitHub Authentication Errors**
-```bash
-# Error: "Username for 'https://github.com': " followed by password rejection
-# Solution: Use Personal Access Token instead of password
-# Or switch to SSH authentication
-
-# Check current remote URL
-git remote -v
-
-# Switch to SSH if needed
-git remote set-url origin git@github.com:YOUR-USERNAME/RandhawaOS.git
-```
-
-**Backup Failures**
-```bash
-# Check if backups are failing due to authentication
-journalctl --user -u randhawa-backup.service | grep -i error
-
-# Common fix: Update stored credentials
-git config --global credential.helper store
-git push  # Enter username and PAT when prompted
-```
-
-**Multiple Computer Sync Issues**
-```bash
-# If you get "repository not found" errors:
-# 1. Make sure you forked the repository
-# 2. Clone from YOUR fork, not the original
-# 3. Set up authentication on each computer independently
-```
-
-**Service Startup Failures**
-```bash
-# Check service status
-systemctl --user status randhawa-backup.timer
-systemctl --user status randhawa-watcher.service
-
-# Restart services
-systemctl --user restart randhawa-backup.timer
-```
-
-**Network Connectivity**
-```bash
-# Test GitHub access
-git ls-remote https://github.com/YOUR-USERNAME/RandhawaOS.git
-
-# Verify credentials (should show encoded token, not password)
-cat ~/.git-credentials
-```
-
-**Path Issues**
-```bash
-# Add to shell profile
-echo 'export PATH="$HOME/.local/share/randhawa-os:$PATH"' >> ~/.bashrc
-```
-
-### Debugging
-Enable verbose logging:
-```bash
-# Monitor backup operations
-journalctl --user -u randhawa-backup -f
-
-# Watch configuration changes
-journalctl --user -u randhawa-watcher -f
-```
-
-## 🤝 Contributing
-
-### Development Setup
-1. Fork the repository
-2. Create feature branch
-3. Test across multiple distributions
-4. Ensure POSIX compatibility
-5. Submit pull request
-
-### Testing Protocol
-- Verify bootstrap script on clean installations
-- Test container builds across platforms
-- Validate restoration procedures
-- Check security scanning results
-
-## 📄 License
-
-MIT License. See [LICENSE](LICENSE) for full terms.
-
-## 🔗 References
-
-- [Wayland Protocol Specification](https://wayland.freedesktop.org/docs/html/)
-- [systemd Service Management](https://systemd.io/)
-- [Nix Package Manager](https://nixos.org/)
-- [Open Container Initiative](https://opencontainers.org/)
-- [POSIX Standards](https://pubs.opengroup.org/onlinepubs/9699919799/)
+> *"Your entire desktop environment, applications, and configurations automatically backed up and synchronized across all your computers"*
 
 ---
 
-**RandhawaOS** - Deterministic Desktop Environment Management
+## 🤔 What is RandhawaOS?
+
+RandhawaOS transforms your Linux computer into a **reproducible, version-controlled desktop environment**. Think of it as "your desktop as code" - where every setting, application, and configuration is automatically tracked, backed up, and can be perfectly recreated on any Linux computer.
+
+### The Problem It Solves
+
+**Traditional Desktop Setup Issues:**
+- 😫 Setting up a new computer takes hours/days
+- 💔 Losing work when a computer crashes  
+- 🔄 Keeping multiple computers in sync is painful
+- 🎯 Hard to reproduce exact same environment
+- 📱 No version control for your desktop
+
+**RandhawaOS Solution:**
+- ⚡ **One Command Setup**: Get your complete environment on any Linux machine
+- 🔄 **Automatic Sync**: Changes automatically backed up to GitHub every 10 minutes  
+- 🖥️ **Multi-Computer**: Use the same setup across unlimited computers
+- 📸 **Time Travel**: Create snapshots and restore to any previous state
+- 🐳 **Bulletproof**: Container-based isolation for maximum stability
+
+---
+
+## 🚀 Quick Start (2 Minutes)
+
+### Step 1: Fork This Repository
+1. Click **Fork** button on this GitHub page
+2. This creates YOUR personal copy where your settings will be saved
+
+### Step 2: One-Command Installation
+```bash
+# Replace YOUR-USERNAME with your GitHub username
+curl -fsSL https://raw.githubusercontent.com/YOUR-USERNAME/RandhawaOS/main/install.sh | bash
+```
+
+### Step 3: Authenticate with GitHub
+During installation, you'll be prompted for GitHub credentials:
+- **Username**: Your GitHub username  
+- **Password**: Use a [Personal Access Token](https://github.com/settings/tokens) (not your GitHub password)
+
+**That's it!** Your desktop is now automatically backed up every 10 minutes.
+
+---
+
+## 📱 What You Get
+
+### 🖥️ Modern Desktop Environment
+- **Hyprland**: Lightning-fast Wayland compositor with GPU acceleration
+- **Waybar**: Beautiful status bar with system information
+- **Kitty**: GPU-accelerated terminal with ligature support
+- **Rofi**: Elegant application launcher and window switcher
+- **Dunst**: Clean notification system
+
+### 📦 Smart Package Management
+- **Native Packages**: Uses your distro's package manager (pacman, apt, dnf, etc.)
+- **Nix Packages**: Reproducible packages that won't break your system
+- **Flatpak Apps**: Sandboxed applications for security
+- **Containers**: Isolated development environments
+
+### 🔄 Automatic Everything
+- **Backup**: Every configuration change automatically saved to GitHub
+- **Sync**: Multiple computers stay perfectly synchronized  
+- **Recovery**: Restore your complete environment on any Linux machine
+- **Snapshots**: Create restore points for safe experimentation
+
+---
+
+## 🌍 Universal Linux Support
+
+RandhawaOS works on **any modern Linux distribution**:
+
+| Distribution | Status | Package Manager | Notes |
+|-------------|--------|-----------------|-------|
+| **Arch Linux** | ✅ Primary | pacman + AUR | Full featured, recommended |
+| **Ubuntu** | ✅ Tested | apt | Complete support |
+| **Debian** | ✅ Tested | apt | Complete support |
+| **Fedora** | ✅ Tested | dnf | Complete support |
+| **openSUSE** | ✅ Tested | zypper | Complete support |
+| **NixOS** | ✅ Native | nix | Full integration |
+| **Others** | ✅ Basic | varies | Core features work |
+
+**System Requirements:**
+- Linux kernel 5.4+ with Wayland support
+- 4GB RAM (8GB recommended for containers)
+- 20GB free disk space
+- Internet connection for packages and sync
+
+---
+
+## 🛠️ Daily Usage
+
+Once installed, RandhawaOS works transparently in the background. Here's what you can do:
+
+### Command Interface
+```bash
+# Check system status
+randhawa-os status
+
+# Create a snapshot before making changes
+randhawa-os snapshot create
+
+# View all available snapshots
+randhawa-os snapshot list
+
+# Restore to a previous snapshot
+randhawa-os snapshot restore snapshot_20250107_143022
+
+# Build development containers
+randhawa-os container build
+
+# Export your configuration for sharing
+randhawa-os export
+```
+
+### Automatic Operations
+- **⏰ Scheduled Backups**: Every 6 hours (customizable)
+- **🔍 Change Detection**: Monitors config files and triggers immediate backup
+- **🔄 Git Sync**: Pushes changes to your GitHub repository automatically
+- **📊 System Monitoring**: Tracks packages, services, and hardware changes
+
+---
+
+## 🏗️ How It Works (Technical Overview)
+
+### Architecture
+RandhawaOS uses a **layered architecture** for maximum reliability:
+
+```
+┌─────────────────────────────────────────┐
+│ User Experience Layer (Hyprland+Apps)  │
+├─────────────────────────────────────────┤
+│ Automation Layer (Git Sync + Monitoring)│
+├─────────────────────────────────────────┤
+│ Package Layer (Native+Nix+Flatpak)     │
+├─────────────────────────────────────────┤
+│ Container Layer (Docker/Podman)        │
+├─────────────────────────────────────────┤
+│ Base System (Any Linux Distribution)   │
+└─────────────────────────────────────────┘
+```
+
+### What Gets Backed Up
+- **Configuration Files**: All dotfiles and app configs
+- **Package Lists**: Complete inventory of installed software
+- **System State**: Services, hardware info, performance metrics
+- **Security**: SSH public keys only (private keys never backed up)
+
+### File Structure
+```
+~/.local/share/randhawa-os/
+├── auto-backup.sh         # Automatic backup engine
+├── snapshot.sh           # Manual snapshot management  
+├── containers/           # Docker container definitions
+├── snapshots/           # Local system snapshots
+└── dotfiles/           # Configuration backups
+
+Your GitHub Repository:
+├── configs/             # Desktop environment configs
+├── containers/         # Development environment containers
+├── manifests/         # System state tracking
+├── scripts/           # Setup and utility scripts
+└── randhawa-os        # Main command interface
+```
+
+---
+
+## 🔄 Multi-Computer Setup
+
+**You can use RandhawaOS on unlimited computers!** Each computer automatically syncs to your GitHub repository.
+
+### Setting Up Additional Computers
+1. **Same Installation**: Run the same curl command on the new computer
+2. **Same Authentication**: Use the same GitHub token
+3. **Automatic Sync**: Both computers will sync changes with each other
+
+### How Sync Works
+- **Computer A** makes a change → automatically pushed to GitHub
+- **Computer B** pulls changes every 6 hours (or manually)
+- **No Conflicts**: Git handles merging automatically
+- **Independent Schedules**: Each computer backs up on its own timer
+
+### Example Workflow
+```bash
+# On Computer A: Install new software
+sudo pacman -S firefox
+# → Automatically backed up to GitHub in 10 minutes
+
+# On Computer B: Pull latest changes  
+cd ~/RandhawaOS-GitHub && git pull
+# → Firefox package will be installed automatically
+```
+
+---
+
+## 🐳 Container Support
+
+RandhawaOS includes **development containers** for isolated, reproducible environments:
+
+### Built-in Containers
+- **Desktop Container**: Complete desktop environment in isolation
+- **Development Container**: Multi-language dev environment (Node.js, Python, Go, Rust)
+- **Browser Container**: Isolated web browsing for security
+
+### Usage Examples
+```bash
+# Build all containers
+randhawa-os container build
+
+# Run development environment
+randhawa-os container run development
+
+# Start complete containerized desktop
+randhawa-os container run desktop
+```
+
+### Benefits
+- **Isolation**: Experiment without affecting your main system
+- **Reproducibility**: Same environment on every computer
+- **Security**: Sandboxed applications can't access your files
+- **Legacy Support**: Run older software in containers
+
+---
+
+## 📸 Snapshot System
+
+Create **restore points** before making major changes:
+
+```bash
+# Create snapshot before installing new software
+randhawa-os snapshot create
+
+# List all snapshots
+randhawa-os snapshot list
+# Output:
+# 📋 Available snapshots:
+# randhawa_20250107_143022 (before steam install)
+# randhawa_20250107_120000 (fresh install)
+
+# Restore to previous state
+randhawa-os snapshot restore randhawa_20250107_120000
+```
+
+**What Snapshots Include:**
+- Complete configuration files
+- Package lists for restoration
+- System state information
+- Hardware and service configuration
+
+---
+
+## 🚨 Disaster Recovery
+
+### Complete System Loss Recovery
+If your computer dies, restore everything on a new Linux machine:
+
+```bash
+# Emergency restore (minimal dependencies)
+curl -fsSL https://raw.githubusercontent.com/YOUR-USERNAME/RandhawaOS/main/emergency-restore.sh | bash
+
+# Full restoration with all features
+git clone https://github.com/YOUR-USERNAME/RandhawaOS.git
+cd RandhawaOS  
+./restore.sh
+```
+
+### What Gets Restored
+- **All Applications**: Every package automatically reinstalled
+- **All Configurations**: Desktop looks and behaves identically
+- **All Dotfiles**: Shell aliases, vim configs, etc.
+- **System Services**: Same services enabled/disabled
+- **Development Environment**: Containers and dev tools ready
+
+---
+
+## 🔒 Security & Privacy
+
+### What's Protected
+- **Private Keys**: SSH private keys never backed up (only .pub files)
+- **Passwords**: No passwords or secrets stored in repository
+- **Personal Data**: Only configuration files backed up
+- **Credentials**: Git authentication stored locally with encryption
+
+### Security Features  
+- **Public Repository Safe**: Your repo can be public - no secrets exposed
+- **Credential Isolation**: GitHub tokens stored with restricted permissions
+- **Container Isolation**: Untrusted software runs in containers
+- **Selective Backup**: Automatic filtering of sensitive files
+
+---
+
+## 🛟 Troubleshooting
+
+### Authentication Issues
+```bash
+# Check if GitHub authentication is working
+git ls-remote https://github.com/YOUR-USERNAME/RandhawaOS.git
+
+# Update credentials if needed
+git config --global credential.helper store
+git push  # Enter username and Personal Access Token
+```
+
+### Backup Not Working
+```bash
+# Check backup service status
+systemctl --user status randhawa-backup.timer
+
+# Check recent backup logs
+journalctl --user -u randhawa-backup.service | tail -20
+
+# Force manual backup
+~/.local/share/randhawa-os/auto-backup.sh
+```
+
+### Missing Commands
+```bash
+# Add RandhawaOS to your PATH
+echo 'export PATH="$HOME/.local/share/randhawa-os:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+### Container Issues
+```bash
+# Rebuild containers after changes
+randhawa-os container build
+
+# Check Docker service
+sudo systemctl status docker
+```
+
+---
+
+## 🎯 Advanced Usage
+
+### Custom Package Lists
+Add your own software to automatic installation:
+
+```bash
+# Arch Linux packages
+echo "your-package" >> manifests/packages-explicit-current.txt
+
+# Flatpak applications  
+echo "com.example.YourApp" >> manifests/packages-flatpak-current.txt
+```
+
+### Custom Configurations
+```bash
+# Add your own configs to be tracked
+cp ~/.config/your-app/config ~/.local/share/randhawa-os/dotfiles/
+```
+
+### Custom Services
+```bash
+# Add systemd services to auto-enable
+echo "your-service.service" >> manifests/services-enabled.txt
+```
+
+---
+
+## 🤝 Contributing
+
+### For Users
+1. **Fork** this repository to create your personal version
+2. **Customize** configurations for your preferences  
+3. **Share** interesting configurations via pull requests
+
+### For Developers
+1. **Test** on multiple Linux distributions
+2. **Ensure** POSIX shell script compatibility
+3. **Verify** security: no secrets in configurations
+4. **Submit** pull requests with improvements
+
+### Testing New Features
+```bash
+# Create snapshot before testing
+randhawa-os snapshot create
+
+# Test new features...
+
+# Restore if something breaks
+randhawa-os snapshot restore <snapshot-name>
+```
+
+---
+
+## 📚 Learn More
+
+### Philosophy
+RandhawaOS implements **"Desktop as Code"** - treating your desktop environment like software:
+- **Version Control**: Track every change
+- **Reproducibility**: Identical environments everywhere  
+- **Automation**: Eliminate manual setup
+- **Reliability**: Quick recovery from any failure
+
+### Technical Details
+- **Immutable Infrastructure**: Core system never modified
+- **Declarative Configuration**: Define desired state, system achieves it
+- **Event-Driven Automation**: Responds to changes automatically
+- **Multi-Layer Package Management**: Best tool for each use case
+
+---
+
+## 📄 License
+
+MIT License - feel free to fork, modify, and share!
+
+---
+
+## 🔗 Quick Links
+
+- **🍴 [Fork This Repository](https://github.com/prabhchintan/RandhawaOS/fork)**
+- **🎫 [Create Personal Access Token](https://github.com/settings/tokens)**
+- **📖 [Detailed Installation Guide](docs/installation.md)**
+- **🐛 [Report Issues](https://github.com/prabhchintan/RandhawaOS/issues)**
+- **💬 [Get Help](https://github.com/prabhchintan/RandhawaOS/discussions)**
+
+---
+
+**RandhawaOS** - *Your Desktop Environment, Everywhere, Always*
+
+> *"Set up once, use everywhere, never lose your work again"*
