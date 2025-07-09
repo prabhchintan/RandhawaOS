@@ -4,7 +4,7 @@
 
 set -e
 
-REPO_URL="https://github.com/your-username/RandhawaOS"
+REPO_URL="https://github.com/prabhchintan/RandhawaOS"
 TEMP_DIR=$(mktemp -d)
 
 echo "🌟 RandhawaOS Quick Installer"
